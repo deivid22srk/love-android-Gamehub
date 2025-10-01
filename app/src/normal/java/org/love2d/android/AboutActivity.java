@@ -28,13 +28,16 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 
 public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         setContentView(R.layout.activity_about);
+        EdgeToEdgeHelper.applySystemBarsPadding(findViewById(R.id.aboutRoot));
 
         // Set button click listener
         Button button = findViewById(R.id.button);

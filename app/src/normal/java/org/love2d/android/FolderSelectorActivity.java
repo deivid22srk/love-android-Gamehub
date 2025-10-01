@@ -23,7 +23,6 @@ package org.love2d.android;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Environment;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +30,7 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.WindowCompat;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.google.android.material.card.MaterialCardView;
@@ -70,7 +70,9 @@ public class FolderSelectorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         setContentView(R.layout.activity_folder_selector);
+        EdgeToEdgeHelper.applySystemBarsPadding(findViewById(R.id.folderSelectorRoot));
 
         initializeViews();
         setupListeners();

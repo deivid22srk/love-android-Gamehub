@@ -40,6 +40,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.WindowCompat;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +80,9 @@ public class GameListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         setContentView(R.layout.activity_game_list);
+        EdgeToEdgeHelper.applySystemBarsPadding(findViewById(R.id.gameListRoot));
 
         initializeViews();
         setupToolbar();
@@ -120,7 +123,7 @@ public class GameListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView() {
-        adapter = new GameGridAdapter();
+        adapter = new GameGridAdapter(this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
