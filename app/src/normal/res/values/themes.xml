@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base GameHub Theme -->
+    <style name="Theme.GameHub" parent="Theme.Material3.DynamicColors.Light">
+        <item name="colorPrimary">@android:color/system_accent1_600</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimaryContainer">@android:color/system_accent1_100</item>
+        <item name="colorOnPrimaryContainer">@android:color/system_accent1_900</item>
+        
+        <item name="colorSecondary">@android:color/system_accent2_600</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="colorSecondaryContainer">@android:color/system_accent2_100</item>
+        <item name="colorOnSecondaryContainer">@android:color/system_accent2_900</item>
+        
+        <item name="android:colorBackground">@android:color/system_neutral1_50</item>
+        <item name="colorOnBackground">@android:color/system_neutral1_900</item>
+        <item name="colorSurface">@android:color/system_neutral1_50</item>
+        <item name="colorOnSurface">@android:color/system_neutral1_900</item>
+        
+        <item name="android:statusBarColor">@android:color/system_neutral1_50</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@android:color/system_neutral1_50</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        
+        <!-- Material You shapes -->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GameHub.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GameHub.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.GameHub.LargeComponent</item>
+    </style>
+
+    <!-- No Action Bar Theme -->
+    <style name="Theme.GameHub.NoActionBar" parent="Theme.GameHub">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Dark Theme for Game List -->
+    <style name="Theme.GameHub.Dark" parent="Theme.Material3.DynamicColors.Dark">
+        <item name="colorPrimary">@android:color/system_accent1_200</item>
+        <item name="colorOnPrimary">@android:color/system_accent1_800</item>
+        <item name="colorPrimaryContainer">@android:color/system_accent1_700</item>
+        <item name="colorOnPrimaryContainer">@android:color/system_accent1_100</item>
+        
+        <item name="colorSecondary">@android:color/system_accent2_200</item>
+        <item name="colorOnSecondary">@android:color/system_accent2_800</item>
+        <item name="colorSecondaryContainer">@android:color/system_accent2_700</item>
+        <item name="colorOnSecondaryContainer">@android:color/system_accent2_100</item>
+        
+        <item name="android:colorBackground">@android:color/system_neutral1_900</item>
+        <item name="colorOnBackground">@android:color/system_neutral1_100</item>
+        <item name="colorSurface">@android:color/system_neutral1_800</item>
+        <item name="colorOnSurface">@android:color/system_neutral1_100</item>
+        
+        <item name="android:statusBarColor">@android:color/system_neutral1_900</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@android:color/system_neutral1_900</item>
+        <item name="android:windowLightNavigationBar">false</item>
+    </style>
+
+    <!-- Shape Appearances -->
+    <style name="ShapeAppearance.GameHub.SmallComponent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="ShapeAppearance.GameHub.MediumComponent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="ShapeAppearance.GameHub.LargeComponent" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+</resources>
