@@ -2,17 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <application android:icon="@drawable/love">
+    <application 
+        android:icon="@drawable/love"
+        android:theme="@style/Theme.GameHub">
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.AppCompat.DayNight">
+            android:theme="@style/Theme.GameHub.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".FolderSelectorActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GameHub.NoActionBar" />
+        <activity
+            android:name=".GameListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GameHub.Dark" />
         <!--
             Important: GameActivity class name MUST be explicitly written as
             "org.love2d.android.GameActivity" without any shortcuts.
@@ -29,8 +39,8 @@
         <activity
             android:name=".AboutActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/Theme.AppCompat.DayNight" />
+            android:parentActivityName=".GameListActivity"
+            android:theme="@style/Theme.GameHub" />
         <provider
             android:name="org.love2d.android.LoveDocumentsProvider"
             android:authorities="${applicationId}.documents"
