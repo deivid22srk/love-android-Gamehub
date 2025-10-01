@@ -180,77 +180,109 @@ public class GameListActivity extends AppCompatActivity {
 
     @SuppressLint("NotifyDataSetChanged")
     private void scanGames() {
-        if (folderUri == null) return;
+        if (folderUri == null) {
+            runOnUiThread(() -> {
+                swipeLayout.setRefreshing(false);
+                noGameLayout.setVisibility(View.VISIBLE);
+                Toast.makeText(this, "Nenhuma pasta selecionada", Toast.LENGTH_SHORT).show();
+            });
+            return;
+        }
 
         executor.execute(() -> {
             try {
                 Uri uri = Uri.parse(folderUri);
                 DocumentFile folder = DocumentFile.fromTreeUri(this, uri);
                 
-                if (folder != null && folder.exists()) {
+                if (folder != null && folder.exists() && folder.canRead()) {
                     ArrayList<GameGridAdapter.GameData> validGames = new ArrayList<>();
                     DocumentFile[] files = folder.listFiles();
 
-                    for (DocumentFile file : files) {
-                        GameGridAdapter.GameData gameData = null;
+                    if (files != null && files.length > 0) {
+                        for (DocumentFile file : files) {
+                            if (file == null || !file.exists()) continue;
+                            
+                            GameGridAdapter.GameData gameData = null;
 
-                        if (file.isDirectory()) {
-                            if (isValidGameDirectory(file)) {
+                            if (file.isDirectory()) {
+                                if (isValidGameDirectory(file)) {
+                                    gameData = new GameGridAdapter.GameData();
+                                    gameData.documentFile = file;
+                                    gameData.name = file.getName() != null ? file.getName() : "Jogo sem nome";
+                                    gameData.isDirectory = true;
+                                }
+                            } else if (file.getName() != null && file.getName().toLowerCase().endsWith(".love")) {
                                 gameData = new GameGridAdapter.GameData();
                                 gameData.documentFile = file;
-                                gameData.name = file.getName();
-                                gameData.isDirectory = true;
+                                String fileName = file.getName();
+                                gameData.name = fileName.substring(0, fileName.lastIndexOf('.'));
+                                gameData.isDirectory = false;
                             }
-                        } else if (file.getName() != null && file.getName().endsWith(".love")) {
-                            gameData = new GameGridAdapter.GameData();
-                            gameData.documentFile = file;
-                            gameData.name = file.getName().replace(".love", "");
-                            gameData.isDirectory = false;
-                        }
 
-                        if (gameData != null) {
-                            validGames.add(gameData);
+                            if (gameData != null) {
+                                validGames.add(gameData);
+                            }
                         }
                     }
 
-                    boolean empty = validGames.isEmpty();
+                    final boolean empty = validGames.isEmpty();
+                    final GameGridAdapter.GameData[] gameArray = empty ? null : validGames.toArray(new GameGridAdapter.GameData[0]);
 
                     runOnUiThread(() -> {
-                        if (empty) {
-                            adapter.setData(null);
-                        } else {
-                            GameGridAdapter.GameData[] gameDatas = new GameGridAdapter.GameData[validGames.size()];
-                            validGames.toArray(gameDatas);
-                            adapter.setData(gameDatas);
+                        try {
+                            adapter.setData(gameArray);
+                            adapter.notifyDataSetChanged();
+                            swipeLayout.setRefreshing(false);
+                            noGameLayout.setVisibility(empty ? View.VISIBLE : View.GONE);
+                            
+                            if (!empty) {
+                                Toast.makeText(this, validGames.size() + " jogos encontrados", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (Exception e) {
+                            Toast.makeText(this, "Erro ao exibir jogos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-
-                        adapter.notifyDataSetChanged();
-                        swipeLayout.setRefreshing(false);
-                        noGameLayout.setVisibility(empty ? View.VISIBLE : View.GONE);
                     });
                 } else {
                     runOnUiThread(() -> {
                         swipeLayout.setRefreshing(false);
                         noGameLayout.setVisibility(View.VISIBLE);
-                        Toast.makeText(this, "Não foi possível acessar a pasta selecionada", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Pasta não acessível. Tente selecionar uma pasta diferente.", Toast.LENGTH_LONG).show();
                     });
                 }
+            } catch (SecurityException e) {
+                runOnUiThread(() -> {
+                    swipeLayout.setRefreshing(false);
+                    noGameLayout.setVisibility(View.VISIBLE);
+                    Toast.makeText(this, "Permissão negada para acessar a pasta", Toast.LENGTH_LONG).show();
+                });
             } catch (Exception e) {
                 runOnUiThread(() -> {
                     swipeLayout.setRefreshing(false);
                     noGameLayout.setVisibility(View.VISIBLE);
-                    Toast.makeText(this, "Erro ao escanear jogos: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Erro inesperado: " + e.getClass().getSimpleName(), Toast.LENGTH_LONG).show();
                 });
             }
         });
     }
 
     private boolean isValidGameDirectory(DocumentFile directory) {
-        DocumentFile[] files = directory.listFiles();
-        for (DocumentFile file : files) {
-            if ("main.lua".equals(file.getName())) {
-                return true;
+        try {
+            if (directory == null || !directory.exists() || !directory.isDirectory()) {
+                return false;
             }
+            
+            DocumentFile[] files = directory.listFiles();
+            if (files == null || files.length == 0) {
+                return false;
+            }
+            
+            for (DocumentFile file : files) {
+                if (file != null && file.exists() && !file.isDirectory() && "main.lua".equals(file.getName())) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            // Ignore errors and return false
         }
         return false;
     }

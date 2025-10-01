@@ -9,8 +9,8 @@
     android:focusable="true"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp"
-    app:cardBackgroundColor="@android:color/system_neutral1_800"
-    app:rippleColor="@android:color/system_accent1_300">
+    app:cardBackgroundColor="@color/colorSurfaceDark"
+    app:rippleColor="@color/colorPrimary">
 
     <FrameLayout
         android:layout_width="match_parent"

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="colorPrimary">#6750A4</color>
+    <color name="colorPrimaryVariant">#3700B3</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    
+    <!-- Secondary Colors -->
+    <color name="colorSecondary">#03DAC6</color>
+    <color name="colorSecondaryVariant">#018786</color>
+    <color name="colorOnSecondary">#000000</color>
+    
+    <!-- Background Colors -->
+    <color name="colorBackground">#F5F5F5</color>
+    <color name="colorOnBackground">#000000</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+    
+    <!-- Dark Theme Colors -->
+    <color name="colorPrimaryDark">#BB86FC</color>
+    <color name="colorBackgroundDark">#121212</color>
+    <color name="colorSurfaceDark">#1F1F1F</color>
+    <color name="colorOnBackgroundDark">#FFFFFF</color>
+    <color name="colorOnSurfaceDark">#FFFFFF</color>
+    
+    <!-- GameHub specific colors -->
+    <color name="folder_card_background">#E3F2FD</color>
+    <color name="search_background">#424242</color>
+</resources>

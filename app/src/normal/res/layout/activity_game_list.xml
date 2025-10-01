@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/system_neutral1_900"
+    android:background="@color/colorBackgroundDark"
     tools:context=".GameListActivity">
 
     <!-- App Bar -->
@@ -12,14 +12,14 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/system_neutral1_900"
+        android:background="@color/colorBackgroundDark"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/system_neutral1_900"
+            android:background="@color/colorBackgroundDark"
             app:titleTextColor="@android:color/white"
             app:layout_scrollFlags="scroll|enterAlways" />
 
@@ -29,14 +29,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp"
-            android:background="@android:color/system_neutral1_900">
+            android:background="@color/colorBackgroundDark">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 app:cardCornerRadius="24dp"
                 app:cardElevation="0dp"
-                app:cardBackgroundColor="@android:color/system_neutral1_700"
+                app:cardBackgroundColor="@color/search_background"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
@@ -51,7 +51,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_menu_search"
-                        android:tint="@android:color/system_neutral1_400"
+                        android:tint="#CCCCCC"
                         android:layout_marginEnd="12dp" />
 
                     <EditText
@@ -60,7 +60,7 @@
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
                         android:hint="Search games"
-                        android:textColorHint="@android:color/system_neutral1_400"
+                        android:textColorHint="#CCCCCC"
                         android:textColor="@android:color/white"
                         android:textSize="14sp"
                         android:inputType="text"
@@ -105,7 +105,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:src="@drawable/ic_baseline_folder_32"
-            android:tint="@android:color/system_neutral1_500"
+            android:tint="#999999"
             app:layout_constraintBottom_toTopOf="@+id/noGamesTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="No Games Found"
-            android:textColor="@android:color/system_neutral1_400"
+            android:textColor="#CCCCCC"
             android:textSize="24sp"
             android:textStyle="bold"
             android:fontFamily="sans-serif-medium"
@@ -136,7 +136,7 @@
             android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="No LÖVE games found in the selected folder.\nMake sure your folder contains .love files or directories with main.lua"
-            android:textColor="@android:color/system_neutral1_500"
+            android:textColor="#999999"
             android:textSize="14sp"
             android:fontFamily="sans-serif"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -155,7 +155,7 @@
         android:layout_margin="24dp"
         android:contentDescription="Change folder"
         android:src="@drawable/ic_baseline_folder_32"
-        app:backgroundTint="@android:color/system_accent1_600"
+        app:backgroundTint="@color/colorPrimary"
         app:tint="@android:color/white" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

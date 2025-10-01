@@ -96,12 +96,12 @@ public class GameGridAdapter extends RecyclerView.Adapter<GameGridAdapter.ViewHo
         if (allData == null) return;
 
         filteredData.clear();
-        if (query.isEmpty()) {
+        if (query == null || query.trim().isEmpty()) {
             filteredData.addAll(Arrays.asList(allData));
         } else {
-            String lowerCaseQuery = query.toLowerCase();
+            String lowerCaseQuery = query.toLowerCase().trim();
             for (GameData game : allData) {
-                if (game.name != null && game.name.toLowerCase().contains(lowerCaseQuery)) {
+                if (game != null && game.name != null && game.name.toLowerCase().contains(lowerCaseQuery)) {
                     filteredData.add(game);
                 }
             }
@@ -172,15 +172,20 @@ public class GameGridAdapter extends RecyclerView.Adapter<GameGridAdapter.ViewHo
 
         @Override
         public void onClick(View v) {
-            if (documentFile == null) {
+            if (documentFile == null || !documentFile.exists()) {
+                android.widget.Toast.makeText(v.getContext(), "Arquivo do jogo não encontrado", android.widget.Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            Context context = v.getContext();
-            Intent intent = new Intent(context, GameActivity.class);
-            intent.setData(documentFile.getUri());
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            context.startActivity(intent);
+            try {
+                Context context = v.getContext();
+                Intent intent = new Intent(context, GameActivity.class);
+                intent.setData(documentFile.getUri());
+                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                context.startActivity(intent);
+            } catch (Exception e) {
+                android.widget.Toast.makeText(v.getContext(), "Erro ao abrir jogo: " + e.getMessage(), android.widget.Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
