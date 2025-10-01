@@ -1,71 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Base GameHub Theme -->
-    <style name="Theme.GameHub" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <item name="colorPrimary">#6750A4</item>
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorOnPrimary">#FFFFFF</item>
-        <item name="colorSecondary">#03DAC6</item>
-        <item name="colorSecondaryVariant">#018786</item>
-        <item name="colorOnSecondary">#000000</item>
-        
-        <item name="android:colorBackground">#F5F5F5</item>
-        <item name="colorOnBackground">#000000</item>
-        <item name="colorSurface">#FFFFFF</item>
-        <item name="colorOnSurface">#000000</item>
+    <style name="Theme.GameHub" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
+        <item name="colorAccent">@color/colorSecondary</item>
         
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
-        
-        <!-- Material shapes -->
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GameHub.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GameHub.MediumComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.GameHub.LargeComponent</item>
     </style>
 
     <!-- No Action Bar Theme -->
-    <style name="Theme.GameHub.NoActionBar" parent="Theme.GameHub">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="Theme.GameHub.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
+        <item name="colorAccent">@color/colorSecondary</item>
+        
+        <item name="android:statusBarColor">@color/colorBackground</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/colorBackground</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <!-- Dark Theme for Game List -->
-    <style name="Theme.GameHub.Dark" parent="Theme.MaterialComponents.Dark">
-        <item name="colorPrimary">#BB86FC</item>
-        <item name="colorPrimaryVariant">#3700B3</item>
-        <item name="colorOnPrimary">#000000</item>
-        <item name="colorSecondary">#03DAC6</item>
-        <item name="colorSecondaryVariant">#03DAC6</item>
-        <item name="colorOnSecondary">#000000</item>
+    <style name="Theme.GameHub.Dark" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryVariant</item>
+        <item name="colorAccent">@color/colorSecondary</item>
         
-        <item name="android:colorBackground">#121212</item>
-        <item name="colorOnBackground">#FFFFFF</item>
-        <item name="colorSurface">#1F1F1F</item>
-        <item name="colorOnSurface">#FFFFFF</item>
+        <item name="android:colorBackground">@color/colorBackgroundDark</item>
+        <item name="colorBackground">@color/colorBackgroundDark</item>
+        <item name="colorSurface">@color/colorSurfaceDark</item>
         
-        <item name="android:statusBarColor">#121212</item>
+        <item name="android:statusBarColor">@color/colorBackgroundDark</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:navigationBarColor">#121212</item>
+        <item name="android:navigationBarColor">@color/colorBackgroundDark</item>
         <item name="android:windowLightNavigationBar">false</item>
-        
-        <!-- Fix for Toolbar usage -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <!-- Shape Appearances -->
-    <style name="ShapeAppearance.GameHub.SmallComponent" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">12dp</item>
-    </style>
-
-    <style name="ShapeAppearance.GameHub.MediumComponent" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
-
-    <style name="ShapeAppearance.GameHub.LargeComponent" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">24dp</item>
     </style>
 </resources>
